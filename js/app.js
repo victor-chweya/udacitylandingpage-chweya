@@ -22,24 +22,6 @@ let sectionHeadings = document.querySelectorAll('[data-nav]');
 let linkClass = 'menu__link';
 
 
-function getMenuContent() {
-    let fragment = new DocumentFragment();
-    
-    for(let i = 0; i < sectionHeadings.length; i++) {
-        let menuItem = document.createElement('li');
-        let menuLink = document.createElement('a');
-        menuLink.setAttribute('href', "#"+sectionHeadings[i].id);
-        menuLink.className = linkClass;
-        menuLink.append(sectionHeadings[i].dataset.nav);
-        menuItem.append(menuLink);
-        fragment.append(menuItem);       
-    }
-    return fragment;
-}
-
-updateMenu.append(getMenuContent());
-
-
 // }
 
 
@@ -60,7 +42,32 @@ updateMenu.append(getMenuContent());
 
 // build the nav
 
+function getMenuContent() {
+    let fragment = new DocumentFragment();
 
+    sectionHeadings.forEach(sectionHeading => {
+        let menuItem = document.createElement('li');
+        let menuLink = document.createElement('a');
+        menuLink.setAttribute('href', "#"+sectionHeading.id);
+        menuLink.className = linkClass;
+        menuLink.append(sectionHeading.dataset.nav);
+        menuItem.append(menuLink);
+        fragment.append(menuItem);  
+    });
+    
+    // for(let i = 0; i < sectionHeadings.length; i++) {
+    //     let menuItem = document.createElement('li');
+    //     let menuLink = document.createElement('a');
+    //     menuLink.setAttribute('href', "#"+sectionHeadings[i].id);
+    //     menuLink.className = linkClass;
+    //     menuLink.append(sectionHeadings[i].dataset.nav);
+    //     menuItem.append(menuLink);
+    //     fragment.append(menuItem);       
+    // }
+    return fragment;
+}
+
+updateMenu.append(getMenuContent());
 // Add class 'active' to section when near top of viewport
 
 
