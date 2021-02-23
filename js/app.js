@@ -19,6 +19,7 @@
 */
 let updateMenu = document.querySelector('#navbar__list');
 let sectionHeadings = document.querySelectorAll('[data-nav]');
+let linkClass = 'menu__link';
 
 
 function getMenuContent() {
@@ -28,7 +29,7 @@ function getMenuContent() {
         let menuItem = document.createElement('li');
         let menuLink = document.createElement('a');
         menuLink.setAttribute('href', "#"+sectionHeadings[i].id);
-        menuLink.className = "menu__link";
+        menuLink.className = linkClass;
         menuLink.append(sectionHeadings[i].dataset.nav);
         menuItem.append(menuLink);
         fragment.append(menuItem);       
