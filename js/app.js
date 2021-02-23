@@ -17,6 +17,30 @@
  * Define Global Variables
  * 
 */
+let updateMenu = document.querySelector('#navbar__list');
+let sectionHeadings = document.querySelectorAll('[data-nav]');
+
+
+function getMenuContent() {
+    let fragment = new DocumentFragment();
+    
+    for(let i = 0; i < sectionHeadings.length; i++) {
+        let menuItem = document.createElement('li');
+        let menuLink = document.createElement('a');
+        menuLink.setAttribute('href', "#"+sectionHeadings[i].id);
+        menuLink.className = "menu__link";
+        menuLink.append(sectionHeadings[i].dataset.nav);
+        menuItem.append(menuLink);
+        fragment.append(menuItem);       
+    }
+    return fragment;
+}
+
+updateMenu.append(getMenuContent());
+
+
+// }
+
 
 
 /**
