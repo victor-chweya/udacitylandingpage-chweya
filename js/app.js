@@ -55,7 +55,7 @@ function getMenuContent() {
     sectionHeadings.forEach(sectionHeading => {
         let menuItem = document.createElement('li');
         let menuLink = document.createElement('a');
-        menuLink.setAttribute('href', "#"+sectionHeading.id);
+        menuLink.setAttribute('href', `#${sectionHeading.id}`);
         menuLink.className = linkClass;
         menuLink.append(sectionHeading.dataset.nav);
         menuItem.append(menuLink);
