@@ -50,16 +50,16 @@ function displayButton(){
 // build the nav
 
 function getMenuContent() {
-    let fragment = new DocumentFragment();
+    // let fragment = new DocumentFragment();
 
     sectionHeadings.forEach(sectionHeading => {
         let menuItem = document.createElement('li');
         let menuLink = document.createElement('a');
-        menuLink.setAttribute('href', `#${sectionHeading.id}`);
+        menuLink.setAttribute('data-nav', `#${sectionHeading.id}`);
         menuLink.className = linkClass;
         menuLink.append(sectionHeading.dataset.nav);
         menuItem.append(menuLink);
-        fragment.append(menuItem);
+        updateMenu.append(menuItem);
 
     });
     
@@ -72,14 +72,34 @@ function getMenuContent() {
     //     menuItem.append(menuLink);
     //     fragment.append(menuItem);       
     // }
-    return fragment;
+    // return fragment;
 }
 
-updateMenu.append(getMenuContent());
+getMenuContent();
 // Add class 'active' to section when near top of viewport
 
 
 // Scroll to anchor ID using scrollTO event
+function anchorID(){
+    let anchorLinks = document.querySelectorAll('.menu__link');
+    anchorLinks.forEach(anchorLink => {
+        let anchorid = anchorLink.getAttribute('data-nav');
+        anchorLink.addEventListener('click', function(event){
+            event.preventDefault();
+            document.querySelector(`${anchorid}`).scrollIntoView();                        
+        });
+    });
+};
+
+anchorID();
+
+// let footer = document.querySelector('.page__footer')
+// function scrollTo(event){
+//     event.preventDefault();
+//     console.log('click event prevented');
+//     footer.scrollIntoView()
+    
+// }
 
 // Scroll to Top scrollTO event
 let gotoTop=()=>document.documentElement.scrollTop = 0;
